@@ -1,0 +1,39 @@
+<!-- main html file -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All posts</title>
+    <link rel="stylesheet" href="/style.css"/>
+ </head>
+ <body>
+    <h1>Quora Post</h1>
+    <% for(post of posts){%>
+        <div class="post">
+            <h3 class="user">@ <%= post.username %></h3>
+            <h4 class="content"><%= post.content %></h4>
+            <br>
+            <!-- post ki id acess karne ke liye or get url ka path direct de rahe hai -->
+             <!-- space nhi dena hai -->
+              <!-- app.get("/posts/:id", (req,res)=>{ -->
+            <a href="http://localhost:8080/posts/<%=post.id%>">See in Details</a>
+            <!-- // ayse 3 bar print hoga click karte he api par hit ho jayega -->
+            <a href="http://localhost:8080/posts/<%=post.id%>/edit">edit</a>
+            <!-- ye viewkar raha hai  -->
+                <!-- <form action="/posts/<%= post.id %>">
+                    <button>Delete Post</button>
+                </form> -->
+                <!-- yaha post method nhi likha tha to ye get method ki tara behavekar raha tha  -->
+                <form method="POST" action="/posts/<%= post.id %>?_method=Delete">
+                    <button>Delete Post</button>
+                </form>
+                
+        </div>
+    <%}%>
+    <!-- kisis bhi new page par jane ke liye ya to ancer tag hoga ya pher button -->
+     <br><br>
+     <!-- ye mene link copy kiya browser se  -->
+     <a href="http://localhost:8080/posts/new">Create new Post</a>
+ </body>
+ </html>
